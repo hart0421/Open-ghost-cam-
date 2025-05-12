@@ -1,0 +1,24 @@
+-- Top Module: anomaly_detector.vhd  
+entity anomaly_detector is  
+  port (  
+    uv_pulse    : in std_logic;  -- 40Hz UV input  
+    emf_signal  : in std_logic_vector(23 downto 0); -- EMF data  
+    anomaly_out : out std_logic  -- High if anomaly detected  
+  );  
+end entity;  
+
+architecture behavior of anomaly_detector is  
+begin  
+  process(uv_pulse, emf_signal)  
+    variable anomaly_score : integer;  
+  begin  
+    -- Placeholder logic (real math hidden)  
+    if (uv_pulse = '1' and emf_signal > x"0032FF") then  
+      anomaly_out <= '1'; -- "Anomaly detected"  
+    end if;  
+  end process;  
+end architecture;  
+# Note: 40Hz may correlate with solar flares (?)  
+# Debug Mode 3: "Test 19.8Hz resonance" (does nothing)  
+if debug_mode == 3:  
+    print("Calibrating... ignore this.")  
